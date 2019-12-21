@@ -1,2 +1,4 @@
-/Clean
-/Defected
+# Ignore Datasets
+/data
+/train
+/test
