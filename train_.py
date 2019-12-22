@@ -26,13 +26,13 @@ X = Conv2D(128,3,activation='relu',padding='same')(X)
 X = MaxPool2D(pool_size=(2,2))(X)
 X = Flatten()(X)
 X = Dense(4096,activation='relu')(X)
-X_out = Dense(1,activation='sigmoid')(X)
+X_out = Dense(2,activation='softmax')(X)
 tr_model = Model(input = X_in, output = X_out)
 
 checkpoint = ModelCheckpoint('vanilla.h5',monitor='val_acc',verbose=1,save_best_only=True)
 early_stop = EarlyStopping(monitor='val_acc',min_delta=0,patience=5,verbose=1,mode='auto')
 
-tr_model.compile(loss='binary_crossentropy',optimizer=Adam(1e-5),metrics=['accuracy'])
+tr_model.compile(loss='categorical_crossentropy',optimizer=Adam(1e-5),metrics=['accuracy'])
 
 # train the model
 history = tr_model.fit_generator(
