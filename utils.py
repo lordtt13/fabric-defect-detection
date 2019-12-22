@@ -16,7 +16,7 @@ train_path = './train'
 test_path = './test'
 
 def load_img_arr(p):
-    return img_to_array(load_img(p))
+    return img_to_array(load_img(p, target_size = (224,224)))
 
 
 def train_val_generator(
