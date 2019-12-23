@@ -16,11 +16,11 @@ train_path = './train'
 test_path = './test'
 
 def load_img_arr(p):
-    return img_to_array(load_img(p, target_size = (224,224)))
+    return img_to_array(load_img(p, target_size = (128,128)))
 
 
 def train_val_generator(
-    batch_size, train_path,test_path,target_size=(224,224)):
+    batch_size, train_path,test_path,target_size=(128,128)):
 
     gen_tr = _train_generator()
     gen_val = _val_generator()
