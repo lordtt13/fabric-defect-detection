@@ -43,8 +43,8 @@ tr_model.compile(loss='categorical_crossentropy',optimizer=Adam(1e-5),metrics=['
 # train the model
 history = tr_model.fit_generator(
                 train_gen,
-                steps_per_epoch=1000,
-                epochs=30,
+                steps_per_epoch=100,
+                epochs=5,
                 validation_data = val_gen,
                 validation_steps = 250,
                 callbacks = [checkpoint,early_stop])
