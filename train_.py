@@ -6,11 +6,12 @@ Created on Sat Dec 21 22:15:13 2019
 """
 
 import matplotlib.pyplot as plt
+import tensorflow as tf
 from utils import train_val_generator
-from keras.layers import Conv2D,MaxPool2D,Dense,Flatten,Input
-from keras.models import Model
-from keras.callbacks import ModelCheckpoint,EarlyStopping
-from keras.optimizers import Adam
+from tensorflow.keras.layers import Conv2D,MaxPool2D,Dense,Flatten,Input
+from tensorflow.keras.models import Model
+from tensorflow.keras.callbacks import ModelCheckpoint,EarlyStopping
+from tensorflow.keras.optimizers import Adam
 
 
 train_path = './train'
@@ -20,14 +21,14 @@ train_gen, val_gen = train_val_generator(16,train_path,test_path)
 input_shape = (128,128,3)
 
 X_in = Input(input_shape)
-X = Conv2D(16,3,activation='relu',padding='same')(X_in)
+X = Conv2D(8,3,activation='relu',padding='same')(X_in)
 X = MaxPool2D(pool_size=(2,2))(X)
-X = Conv2D(16,3,activation='relu',padding='same')(X)
+X = Conv2D(8,3,activation='relu',padding='same')(X)
 X = MaxPool2D(pool_size=(2,2))(X)
 X = Flatten()(X)
-X = Dense(64,activation='relu')(X)
+X = Dense(32,activation='relu')(X)
 X_out = Dense(2,activation='softmax')(X)
-tr_model = Model(input = X_in, output = X_out)
+tr_model = Model(X_in, X_out)
 
 checkpoint = ModelCheckpoint('vanilla.h5',monitor='val_acc',verbose=1,save_best_only=True)
 early_stop = EarlyStopping(monitor='val_acc',min_delta=0,patience=5,verbose=1,mode='auto')
