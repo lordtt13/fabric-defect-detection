@@ -5,17 +5,11 @@ Created on Sat Dec 21 22:15:13 2019
 @author: tanma
 """
 
-import tensorflow as tf
-from keras.backend.tensorflow_backend import set_session
-config = tf.ConfigProto()
-config.gpu_options.per_process_gpu_memory_fraction = 0.6
-set_session(tf.Session(config=config))
-
 import matplotlib.pyplot as plt
 from utils import train_val_generator
-from keras.layers import Conv2D,MaxPool2D,Dense,Dropout,Flatten,Input
-from keras.models import Sequential,Model
-from keras.callbacks import ModelCheckpoint,LearningRateScheduler,EarlyStopping
+from keras.layers import Conv2D,MaxPool2D,Dense,Flatten,Input
+from keras.models import Model
+from keras.callbacks import ModelCheckpoint,EarlyStopping
 from keras.optimizers import Adam
 
 
