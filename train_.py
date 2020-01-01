@@ -18,7 +18,7 @@ train_path = './train'
 test_path ='./test'
 
 train_gen, val_gen = train_val_generator(16,train_path,test_path)
-input_shape = (128,128,3)
+input_shape = (32,32,3)
 
 X_in = Input(input_shape)
 X = Conv2D(8,3,activation='relu',padding='same')(X_in)
