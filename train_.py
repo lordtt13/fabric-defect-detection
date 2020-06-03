@@ -29,11 +29,15 @@ except:
 X_in = Input(input_shape)
 X = Conv2D(64, 3, activation = 'relu',padding = 'same')(X_in)
 X = MaxPool2D(pool_size = (2,2))(X)
+X = Dropout(0.5)(X)
+X = Conv2D(32, 3, activation = 'relu',padding = 'same')(X)
+X = MaxPool2D(pool_size = (2,2))(X)
+X = Dropout(0.5)(X)
 X = Conv2D(16, 3, activation = 'relu',padding = 'same')(X)
 X = MaxPool2D(pool_size = (2,2))(X)
 X = Flatten()(X)
 X = Dense(32,activation = 'relu')(X)
-X = Dropout(0.2)(X)
+X = Dropout(0.5)(X)
 X_out = Dense(2, activation = 'softmax')(X)
 tr_model = Model(X_in, X_out)
 
@@ -46,7 +50,7 @@ tr_model.compile(loss = 'categorical_crossentropy', optimizer = 'adam', metrics 
 history = tr_model.fit(
                 train_gen,
                 steps_per_epoch = 100,
-                epochs = 5,
+                epochs = 25,
                 validation_data = val_gen,
                 validation_steps = 250,
                 callbacks = [checkpoint,early_stop])
