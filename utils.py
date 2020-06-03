@@ -16,11 +16,11 @@ train_path = './train'
 test_path = './test'
 
 def load_img_arr(p):
-    return img_to_array(load_img(p, target_size = (32,32)))
+    return img_to_array(load_img(p, target_size = (64,64)))
 
 
 def train_val_generator(
-    batch_size, train_path,test_path,target_size=(32,32)):
+    batch_size, train_path,test_path,target_size = (64,64)):
 
     gen_tr = _train_generator()
     gen_val = _val_generator()
@@ -83,7 +83,7 @@ def _apply_to_first_n_in_dir(func, dir_, num_per_cls, **kwargs):
 
 
 def init_directory_generator(
-    gen, dir_,batch_size, target_size=(32,32),
+    gen, dir_,batch_size, target_size=(64,64),
     class_mode='categorical',shuffle=True):
 
     return gen.flow_from_directory(
